@@ -25,13 +25,19 @@ export const fetchBooksSuccess = (data) =>{
 }
 
 export const fetchBooksLoading = (data) => {
-    debugger
     return {
         type: FETCH_BOOK_LOADING,
         payload: data
     }
 }
 
+export const fetchBooksError = (data) => {
+    debugger
+    return {
+        type: FETCH_BOOK_ERROR,
+        payload: data
+    }
+}
 // const normalizeResponse = (data) => {
 //     const arr = data.map(item =>{
 //         const keys = Object.keys(item);
@@ -59,7 +65,12 @@ export const fetchBooks = () =>{
             dispatch(fetchBooksLoading(isLoading))
         })
         .catch(error => {
-            console.log(error)
+            const errorPayload = {};
+            errorPayload['message'] = error.message
+            errorPayload['status'] = error.response.status
+            
+            dispatch(fetchBooksError(errorPayload))
+
             isLoading = false
             dispatch(fetchBooksLoading(isLoading))
         })
