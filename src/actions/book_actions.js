@@ -15,6 +15,28 @@ import {
 
 import axios from 'axios'
 
+////CREATE-----------------------------------------------
+export const createBook =(book)=> {
+    debugger
+    const data = {
+        title: book.title,
+        author: book.author,
+        year: book.year
+    }
+
+    return (dispatch) => {
+        return axios.post(url, data)
+        .then(resp => {})
+        .catch(error => {})
+    }
+}
+
+////EDIT-----------------------------------------------
+////DELETE-----------------------------------------------
+////FETCH-----------------------------------------------
+
+
+
 const url = 'http://127.0.0.1:3000/books'
 
 export const fetchBooksSuccess = (data) =>{
